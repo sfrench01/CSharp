@@ -1,0 +1,20 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class CheckCredit
+{
+	static void Main()
+	{
+		// Write your code here
+		int checkCredit;
+		string scc;
+		Console.Write("Enter purchase price: ");
+		scc = ReadLine();
+		checkCredit = Convert.ToInt32(scc);
+
+		if (checkCredit > 8000)
+			Console.WriteLine("You have exceeded the credit limit;");
+		else
+			Console.WriteLine("Approved.");
+	}
+}
