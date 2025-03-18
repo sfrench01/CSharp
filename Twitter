@@ -1,0 +1,19 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class Twitter
+{
+	static void Main()
+	{
+		// Write your code here
+		string message;
+		int lenMessage;
+		Write("Enter message: ");
+		message = Console.ReadLine();
+		lenMessage = message.Length;
+		if (lenMessage > 140)
+			Console.WriteLine("The message is too long.");
+		else
+			Console.WriteLine("The message is okay.");
+	}
+}
