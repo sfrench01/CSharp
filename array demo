@@ -1,0 +1,84 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class ArrayDemo
+{
+	enum Menu
+	{
+		IN_ORIGINAL_ORDER = 1, REVERSE_ORDER, SPECIFIC_POSITION, QUIT
+	}
+	static void Main()
+	{
+		int[] nums = {7, 6, 3, 2, 10, 8, 4, 5, 9, 1};
+		  int choice = 0;
+        int index;
+
+        // Loop to display the menu until the user chooses to quit
+        while (choice != (int)Menu.QUIT)
+        {
+            // Display options to the user
+            WriteLine("\nPlease choose an option:");
+            WriteLine("1. View the list in order from first to last position");
+            WriteLine("2. View the list in order from last to first position");
+            WriteLine("3. Choose a specific position to view");
+            WriteLine("4. Quit");
+
+            // Get the user's choice
+            bool validChoice = int.TryParse(ReadLine(), out choice);
+            
+            if (validChoice)
+            {
+                // Switch case based on the user's choice
+                switch ((Menu)choice)
+                {
+                    case Menu.IN_ORIGINAL_ORDER:
+                        // Display array from first to last
+                        WriteLine("List from first to last position:");
+                        foreach (int num in nums)
+                        {
+                            Write(num + " ");
+                        }
+                        WriteLine();
+                        break;
+
+                    case Menu.REVERSE_ORDER:
+                        // Display array from last to first
+                        WriteLine("List from last to first position:");
+                        for (int i = nums.Length - 1; i >= 0; i--)
+                        {
+                            Write(nums[i] + " ");
+                        }
+                        WriteLine();
+                        break;
+
+                    case Menu.SPECIFIC_POSITION:
+                        // Ask user for an index and display the value
+                        Write("Enter the index (0-9) of the position you want to view: ");
+                        bool validIndex = int.TryParse(ReadLine(), out index);
+                        if (validIndex && index >= 0 && index < nums.Length)
+                        {
+                            WriteLine($"The value at position {index} is: {nums[index]}");
+                        }
+                        else
+                        {
+                            WriteLine("Invalid index! Please enter a number between 0 and 9.");
+                        }
+                        break;
+
+                    case Menu.QUIT:
+                        WriteLine("Quitting the application. Goodbye!");
+                        break;
+
+                    default:
+                        WriteLine("Invalid choice! Please enter a number between 1 and 4.");
+                        break;
+                }
+            }
+            else
+            {
+                WriteLine("Invalid input! Please enter a valid number.");
+            }
+        }
+		// Write your code here
+	}
+}
