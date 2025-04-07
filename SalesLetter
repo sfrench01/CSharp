@@ -1,0 +1,27 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class SalesLetter
+{
+	static void Main()
+	{
+		// Write your code here
+		WriteLine("From");
+		DisplayContactInfo();
+		WriteLine("Dear Client, \nWe want to provide you good service.");
+		DisplayContactInfo();
+		WriteLine("Looking forward to a long relationship.");
+		DisplayContactInfo();
+	}
+	public static void DisplayContactInfo(){
+		WriteLine("French Sky Inc.");
+		WriteLine("Phone: 123-4567		Cell: 123-8910");
+		WriteLine("Email: frenchskyinc@csharp.com");
+		WriteLine("On the Web at www.frenchskyinc.com");
+		for (int x = 0; x < 40; ++x){
+			Write("_");
+		}
+		WriteLine();
+
+	}
+}
