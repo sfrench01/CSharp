@@ -1,0 +1,33 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class PaintingEstimate
+{
+	static void Main()
+	{
+		// Write your code here
+		Write("Enter length of the room in feet >> ");
+		string lengthStr = ReadLine();
+		WriteLine();
+		Write("Enter width of the room in feet >> ");
+		string widthStr = ReadLine();
+		WriteLine();
+
+		int length, width;
+		length = Convert.ToInt32(lengthStr);
+		width = Convert.ToInt32(widthStr);
+		double totalCost = CalcCost(length, width);
+
+		WriteLine("Cost of job for " + lengthStr + " X " + widthStr 
+		+ " foot room is {0}", totalCost.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+
+	}
+	public static double CalcCost(int length, int width){
+		const double cost = 6.00;
+		double perimeter = (length + width) * 2;
+		double totalArea = perimeter * 9;
+		double totalCost = totalArea * cost;
+		return totalCost;
+
+	}
+}
