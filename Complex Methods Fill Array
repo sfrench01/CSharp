@@ -1,0 +1,72 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class IntegerFacts
+{
+	static void Main()
+	{
+		// Write your code here
+		int[] numbers = new int[10];
+
+		int numValues = FillArray(numbers);
+		int min, max, sum;
+		double avg;
+
+		Statistics(numbers, numValues, out max, out min, out sum, out avg);
+
+		Console.WriteLine($"The array has {numValues} values");
+		Console.WriteLine($"The highest value is {max}");
+		Console.WriteLine($"The lowest value {min}");
+		Console.WriteLine($"The sum of the values is {sum}");
+		Console.WriteLine($"The average is {avg:F2}");
+
+		Console.Write("The inputs were ");
+		for (int i = 0; i < numValues; i++){
+			if(i < numValues - 1){
+				Console.Write($"{numbers[i]}, ");
+			}
+			else{
+			Console.WriteLine($"{numbers[i]}");
+			}
+		}
+		
+	}
+
+	public static int FillArray(int[] array){
+		int index = 0;
+		//int value;
+
+		while (index < array.Length){
+			Console.Write("Enter a number (999 to stop)");
+
+			if (int.TryParse(Console.ReadLine(), out int value)){
+				if (value == 999){
+					break;
+				}
+				array[index] = value;
+				index++;
+			}
+			else{
+				Console.WriteLine("Invalid input. Please enter an integer.");
+			}
+		}	
+		return index;
+	}
+
+	public static void Statistics(int[] array, int numValues, out int max, out int min, out int sum, out double avg){
+		min = array[0];
+		max = array[0];
+		sum = 0;
+
+		for (int i = 0; i < numValues; i++){
+			if (array[i] < min){
+				min = array[i];
+			}
+			if(array[i] > max){
+				max = array[i];
+			}
+			sum += array[i];
+		}
+		avg = (double)sum / numValues;
+	}
+}
