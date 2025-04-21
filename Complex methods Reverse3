@@ -1,0 +1,23 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class Reverse3
+{
+	static void Main()
+	{
+		// Write your code here
+		int firstInt = 23, middleInt = 45, lastInt = 67;
+		WriteLine($"The numbers are {firstInt}, {middleInt}, {lastInt}");
+
+		Reverse(ref firstInt, ref middleInt, ref lastInt);
+
+		WriteLine($"The numbers are {firstInt}, {middleInt}, {lastInt}");
+
+	}
+	public static void Reverse(ref int first, ref int middle, ref int last){
+		int temp = first;
+		first = last;
+		last = temp;
+
+	}
+}
