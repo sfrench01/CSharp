@@ -1,0 +1,41 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class TestSoccerPlayer
+{
+	static void Main()
+	{
+		// Write your code here
+		SoccerPlayer player = new SoccerPlayer("Alex Morgan", 13, 15, 7);
+
+        // Display player information
+        WriteLine("Soccer Player Information");
+        WriteLine("-------------------------");
+        WriteLine($"Name       : {player.Name}");
+        WriteLine($"Jersey #   : {player.JerseyNum}");
+        WriteLine($"Goals      : {player.Goals}");
+        WriteLine($"Assists    : {player.Assists}");
+	}
+}
+public class SoccerPlayer
+{
+    // Public auto-implemented properties
+    public string Name { get; set; }
+    public int JerseyNum { get; set; }
+    public int Goals { get; set; }
+    public int Assists { get; set; }
+
+    // ✅ Include a parameterless constructor for test compatibility
+    public SoccerPlayer()
+    {
+    }
+
+    // Optional: Keep your custom constructor
+    public SoccerPlayer(string name, int jerseyNum, int goals, int assists)
+    {
+        Name = name;
+        JerseyNum = jerseyNum;
+        Goals = goals;
+        Assists = assists;
+    }
+}
