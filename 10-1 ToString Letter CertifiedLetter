@@ -8,30 +8,28 @@ class LetterDemo
 		// Write your code here
 		Letter regularLetter = new Letter();
 		regularLetter.Name = "Skyla French";
-		regularLetter.DateMailed = "5/8/2025";
+		regularLetter.Date = "5/8/2025";
 
 		CertifiedLetter certifiedLetter = new CertifiedLetter();
 		certifiedLetter.Name = "Skyla French";
-		certifiedLetter.DateMailed = "5/7/2025";
+		certifiedLetter.Date = "5/7/2025";
 		certifiedLetter.TrackingNumber = "xyz1234";
 
 		WriteLine(regularLetter.ToString());
-		WriteLine( certifiedLetter.ToString());
+		WriteLine(certifiedLetter.ToString());
 	}
 }
 class Letter {
 	public string Name {get; set;}
-	public string DateMailed{get; set;}
+	public string Date{get; set;}
 
 	public Letter(){
 		Name = "";
-		DateMailed = "";
+		Date = "";
 	}
-
-	public override string ToString(){
-		return (GetType().Name + ": " + Name + " " + DateMailed);
+	public new string ToString(){
+		return GetType() + " To: " + Name + " Date mailed: " + Date;
 	}
-
 }
 class CertifiedLetter : Letter{
 	public string TrackingNumber {get; set;}
@@ -39,8 +37,7 @@ class CertifiedLetter : Letter{
 	public CertifiedLetter(){
 		TrackingNumber = "";
 	}
-
-	public override string ToString(){
-		return (GetType().Name + ": " + Name + " " + DateMailed + " " + TrackingNumber);
+	public new string ToString(){
+	 	return (GetType() + " To: " + Name + " Date mailed: " + Date + " Tracking Number: " + TrackingNumber);
 	}
 }
