@@ -1,0 +1,46 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class LetterDemo
+{
+	static void Main()
+	{
+		// Write your code here
+		Letter regularLetter = new Letter();
+		regularLetter.Name = "Skyla French";
+		regularLetter.DateMailed = "5/8/2025";
+
+		CertifiedLetter certifiedLetter = new CertifiedLetter();
+		certifiedLetter.Name = "Skyla French";
+		certifiedLetter.DateMailed = "5/7/2025";
+		certifiedLetter.TrackingNumber = "xyz1234";
+
+		WriteLine(regularLetter.ToString());
+		WriteLine( certifiedLetter.ToString());
+	}
+}
+class Letter {
+	public string Name {get; set;}
+	public string DateMailed{get; set;}
+
+	public Letter(){
+		Name = "";
+		DateMailed = "";
+	}
+
+	public override string ToString(){
+		return (GetType().Name + ": " + Name + " " + DateMailed);
+	}
+
+}
+class CertifiedLetter : Letter{
+	public string TrackingNumber {get; set;}
+
+	public CertifiedLetter(){
+		TrackingNumber = "";
+	}
+
+	public override string ToString(){
+		return (GetType().Name + ": " + Name + " " + DateMailed + " " + TrackingNumber);
+	}
+}
