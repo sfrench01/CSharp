@@ -1,0 +1,81 @@
+using System;
+using static System.Console;
+using System.Globalization;
+using System.ComponentModel.DataAnnotations;
+class StudentGradeDemo
+{
+	static void Main()
+	{
+		// Write your code here
+		try
+		{
+			ReportCard r1 = new ReportCard("Alice Jones", 88, 94);
+			r1.Display();
+		}
+		catch (ArgumentException e)
+		{
+			WriteLine($"Error creating report card: {e.Message}\n");
+		}
+		try
+		{
+			ReportCard r3 = new ReportCard("Charlie", 100, 90); 
+			r3.Display();
+		}
+		catch (ArgumentException e)
+		{
+			WriteLine($"Error creating report card: {e.Message}\n");
+		}
+	}
+}
+class ReportCard
+{
+	private string studentName { get; set; }
+	private int midterm { get; set; }
+	private int final { get; set; }
+	private double average;
+	private char letterGrade;
+
+	public ReportCard(string name, int midtermGrade, int finalGrade)
+	{
+		if (midtermGrade < 0 || midtermGrade > 100)
+		{
+			throw new ArgumentException("Midterm grade must be between 0 and 100.");
+		}
+		if (finalGrade < 0 || finalGrade > 100)
+		{
+			throw new ArgumentException("Final exam grade must be between 0 and 100.");
+		}
+		studentName = name;
+		midterm = midtermGrade;
+		final = finalGrade;
+
+		average = (midterm + final) / 2.0;
+		if (average >= 90)
+		{
+			letterGrade = 'A';
+		}
+		else if (average >= 80)
+		{
+			letterGrade = 'B';
+		}
+		else if (average >= 70)
+		{
+			letterGrade = 'C';
+		}
+		else if (average >= 60)
+		{
+			letterGrade = 'D';
+		}
+		else
+		{
+			letterGrade = 'F';
+		}
+	}
+	public void Display()
+    {
+		WriteLine($"Student: {studentName}");
+		WriteLine($"Midterm Grade: {midterm}");
+		WriteLine($"Final Grade: {final}");
+		WriteLine($"Letter Grade: {letterGrade}");
+    }
+}
