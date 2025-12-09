@@ -1,0 +1,51 @@
+using System;
+using static System.Console;
+using System.Globalization;
+using System.IO;
+class WritePatientRecords
+{
+   static void Main()
+   {
+      // Write your code here
+      const int END = 999;
+      const string DElIM = ",";
+      const string FILE_NAME = "Patients.txt";
+
+      FileStream outFile = new FileStream(FILE_NAME, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(outFile);
+
+      Write("Enter patient ID number or 999 to quit >> ");
+      string id = ReadLine();
+
+      while (id != END.ToString())
+        {
+            Patient p = new Patient();
+            p.IdNum = id;
+
+            Write("Enter last name >> ");
+            p.Name = ReadLine();
+
+            Write("Enter balance >> ");
+            p.Balance = Convert.ToDouble(ReadLine());
+
+            writer.WriteLine(p.IdNum + DElIM + 
+                             p.Name + DElIM + 
+                             p.Balance.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+            Write("Enter next patient ID number or 999 to quit >> ");
+            id = ReadLine();
+        }
+        writer.Close();
+        outFile.Close();
+   }
+}
+public class Patient
+    {
+        public string IdNum {get; set;}
+        public string Name {get; set;}
+        public double Balance {get; set;}
+
+        public override string ToString()
+        {
+            return IdNum + ", " + Name + ", " + Balance.ToString("F2");
+        }
+    }
