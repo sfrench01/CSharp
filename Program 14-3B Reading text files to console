@@ -1,0 +1,54 @@
+using System;
+using System.IO;
+using static System.Console;
+using System.Globalization;
+class ReadPatientRecords
+{
+   static void Main()
+   {
+      // Write your code here
+      const string  FILE_NAME = "Patients.txt";
+
+      if (!File.Exists(FILE_NAME))
+        {
+            WriteLine("File " + FILE_NAME + " does not exist.");
+            return;
+        }
+      WriteLine("{0, -10} {1, -20} {2, 10}", "IdNumber", "Name", "Balance");
+      
+      StreamReader reader = new StreamReader(FILE_NAME);
+      string line;
+
+      while((line = reader.ReadLine()) != null)
+        {
+            string[] parts = line.Split(',');
+
+            if (parts.Length >= 3)
+            {
+                string id = parts[0];
+                string name = parts[1];
+                double balance;
+
+                string balanceStr = parts[2].Replace("$", "");
+                if (double.TryParse(balanceStr, out balance))
+                {
+                    WriteLine("{0, -10} {1, -20} {2, 10}", 
+                    id,
+                    name,
+                    balance.ToString("C", CultureInfo.GetCultureInfo("en-us")));
+                }
+                else
+                {
+                    WriteLine("Invalid balance for patient " + id);  
+                }
+            }
+            else
+            {
+                WriteLine("Invalid record: "+ line);
+            }
+        }
+        reader.Close();
+   }
+}
+   
+
