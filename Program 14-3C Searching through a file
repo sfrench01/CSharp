@@ -1,0 +1,64 @@
+using System;
+using static System.Console;
+using System.Globalization;
+using System.IO;
+class FindPatientRecords
+{
+   static void Main()
+   {
+      // Write your code here
+      const string FILE_NAME = "Patients.txt";
+
+        if (!File.Exists(FILE_NAME))
+        {
+            WriteLine("File " + FILE_NAME + " does not exist.");
+            return;
+        }
+
+        Write("Enter patient ID number to find >> ");
+        string searchId = ReadLine();
+
+        bool found = false;
+
+        StreamReader reader = new StreamReader(FILE_NAME);
+        string line;
+
+        while ((line = reader.ReadLine()) != null)
+        {
+            string[] parts = line.Split(',');
+
+            if (parts.Length >= 3)
+            {
+                string id = parts[0];
+                string name = parts[1];
+                double balance;
+
+                string balanceStr = parts[2].Replace("$", "").Replace(",", "");
+
+                if (!double.TryParse(balanceStr, out balance))
+                {
+                    continue;
+                }
+
+                if (id.Equals(searchId, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Display header
+                    WriteLine("\nID Number Name                 Balance");
+                    WriteLine("{0,-10} {1,-20} {2,10}",
+                        id,
+                        name,
+                        balance.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+                    found = true;
+                    break;
+                }
+            }
+        }
+        reader.Close();
+
+        if (!found)
+        {
+            WriteLine($"No records found for {searchId}");
+        }
+   }
+}
+   
