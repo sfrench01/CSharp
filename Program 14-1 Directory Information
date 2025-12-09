@@ -1,0 +1,39 @@
+using System;
+using static System.Console;
+using System.IO;
+class DirectoryInformation
+{
+   static void Main()
+   {
+      // Write your code here
+      string directory;
+
+      Write("Enter a directory: ");
+      directory = ReadLine();
+
+      while(!directory.Equals("end", StringComparison.OrdinalIgnoreCase))
+        {
+            if(Directory.Exists(directory))
+            {
+               string[] files = Directory.GetFiles(directory);
+                  if(files.Length == 0){
+                     WriteLine("There are no files in " + directory);
+                  }
+                else
+                {
+                    WriteLine(directory + " contains the following files");
+                    foreach(string file in files)
+                    {
+                        WriteLine("  " + file);
+                    }
+                }
+            }
+            else
+            {
+                WriteLine("Directory " + directory + " does not exist");
+            }
+            Write("\nEnter another directory or type end to quit >> ");
+            directory = ReadLine();
+        }
+   }
+}
